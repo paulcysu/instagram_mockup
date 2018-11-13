@@ -7,7 +7,7 @@
  */
 
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View} from 'react-native';
+import {Platform, StyleSheet, Text, View, ScrollView} from 'react-native';
 
 import Header from './src/components/header/header';
 import PhotoSection from './src/components/photoSection/photoSection';
@@ -23,10 +23,12 @@ type Props = {};
 export default class App extends Component<Props> {
   render() {
     return (
-      <View>
+      <ScrollView>
         <Header title={"Photos"}/>
         <PhotoSection/>
-      </View>
+        <PhotoSection/>
+        <PhotoSection/>
+      </ScrollView>
     );
   }
 }

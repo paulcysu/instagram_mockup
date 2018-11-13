@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import { Text, View, Image, Button, StyleSheet } from 'react-native'
+import { Text, View, Image, Button, StyleSheet } from 'react-native';
+import Ionicons from "react-native-vector-icons/Ionicons";
 
 class PhotoSection extends Component {
   render() {
@@ -9,7 +10,7 @@ class PhotoSection extends Component {
         <View style={styles.thumbnailSection}>
             <Image source={{uri: "https://picsum.photos/200/300/?random"}} style={styles.thumbnail}/>
             <View style={styles.usernameContainer}>
-              <Text>Random Image Dude</Text>
+              <Text style={styles.username}>Random Image Dude</Text>
             </View>
         </View>
 
@@ -17,8 +18,11 @@ class PhotoSection extends Component {
             <Image source={{uri: "https://picsum.photos/200/300/?random"}} style={{width: null, height: 400}}/>
         </View>
 
-        <View>
-            <Button title="Like"/>
+        <View style={styles.heartContainer}>
+          <Ionicons 
+            name="ios-heart-outline" 
+            size={30}
+            />
         </View>
 
         <View style={styles.commentContainer}>
@@ -59,6 +63,11 @@ const styles = StyleSheet.create({
   },
   commentText: {
     paddingLeft: 5
+  },
+  heartContainer: {
+    paddingTop: 10,
+    paddingBottom: 10,
+    paddingLeft: 10
   }
 })
 
