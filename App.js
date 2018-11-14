@@ -8,9 +8,14 @@
 
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View, ScrollView} from 'react-native';
+import { Provider } from 'react-redux';
+import { createStore, applyMiddleware } from 'redux';
+import reducers from './src/reducers';
+import ReduxThunk from 'redux-thunk';
 
 import Header from './src/components/header/header';
 import PhotoSection from './src/components/photoSection/photoSection';
+import PhotoFeed from './src/components/photoFeed/photoFeed';
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
@@ -19,16 +24,19 @@ const instructions = Platform.select({
     'Shake or press menu button for dev menu',
 });
 
+
+
 type Props = {};
 export default class App extends Component<Props> {
   render() {
+    const store = createStore(reducers, {}, applyMiddleware(ReduxThunk));
     return (
-      <ScrollView>
-        <Header title={"Photos"}/>
-        <PhotoSection/>
-        <PhotoSection/>
-        <PhotoSection/>
-      </ScrollView>
+      <Provider store={store}>
+        <ScrollView>
+          <Header title={"Instaclone"}/>
+          <PhotoFeed/>
+        </ScrollView>
+      </Provider>
     );
   }
 }
