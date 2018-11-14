@@ -1,8 +1,18 @@
 import React, { Component } from 'react'
-import { Text, View, Image, Button, StyleSheet } from 'react-native';
+import { Text, View, Image, Button, StyleSheet, TouchableWithoutFeedback } from 'react-native';
 import Ionicons from "react-native-vector-icons/Ionicons";
 
 class PhotoSection extends Component {
+  state = {
+    "like": false
+  }
+
+  toggleLike = () => {
+    this.setState({
+      "like": !this.state.like,
+    })
+  }
+
   render() {
     return (
       <View style={styles.container}>
@@ -10,23 +20,22 @@ class PhotoSection extends Component {
         <View style={styles.thumbnailSection}>
             <Image source={{uri: "https://picsum.photos/200/300/?random"}} style={styles.thumbnail}/>
             <View style={styles.usernameContainer}>
-              <Text style={styles.username}>Random Image Dude</Text>
+              <Text style={styles.username}>{this.props.username}</Text>
             </View>
         </View>
 
         <View>
-            <Image source={{uri: "https://picsum.photos/200/300/?random"}} style={{width: null, height: 400}}/>
+            <Image source={{uri: this.props.image}} style={{width: null, height: 400}}/>
         </View>
 
         <View style={styles.heartContainer}>
-          <Ionicons 
-            name="ios-heart-outline" 
-            size={30}
-            />
+          <TouchableWithoutFeedback onPress={() => this.toggleLike()}>
+            <Text>{ !this.state.like ? "Like" : "Unlike" }</Text>
+          </TouchableWithoutFeedback>
         </View>
 
         <View style={styles.commentContainer}>
-            <Text style={styles.username}>lawlforpaul</Text>
+            <Text style={styles.username}>{this.props.username}</Text>
             <Text style={styles.commentText}>this is freakin awesome!</Text>
         </View>
 
